@@ -1,0 +1,21 @@
+*
+{
+    margin: 0;
+}
+html, body
+{
+    height: 100%;
+}
+.fourPics
+{
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+#fourPicsBox
+{
+    display: flex;
+    flex-wrap: wrap;
+    width: 30%; 
+    height: auto;
+}
