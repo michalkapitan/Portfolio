@@ -16,6 +16,32 @@ html, body
 {
     display: flex;
     flex-wrap: wrap;
+    float: left;
     width: 30%; 
     height: auto;
+    padding: 1%;
+}
+
+/*immediately tablets because i did mobile-first*/
+@media only screen and (min-width: 600px){
+    .fourPics
+    {
+        width: 50%;
+    }
+    #fourPicsBox
+    {
+        width: 45%;
+    }
+}
+
+/*laptops*/
+@media only screen and (min-width: 1024px){
+    .fourPics
+    {
+        width: 50%;
+    }
+    #fourPicsBox
+    {
+        width: 22vw;
+    }
 }
