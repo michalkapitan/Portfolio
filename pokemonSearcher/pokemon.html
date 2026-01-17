@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokemon Searcher</title>
+</head>
+<body>
+        <label for="pokemon">Search a Pokemon</label>
+        <input type="text" id="pokemon">
+        <button onclick="fetchPokemon()">Fetch a pokemon</button>
+        <br>
+        <p id="pokemonName"></p>
+        <img src="" id="pokemonImg">
+        <br>
+        <p id="pokemonNameShiny"></p>
+        <img src="" id="pokemonImgShiny">
+        <p id="errorMessage"></p>
+    <script>
+        async function fetchPokemon(){
+            try
+            {
+                let pokemon = document.getElementById('pokemon').value.toLowerCase();
+                let pokemonImg = document.getElementById('pokemonImg');
+                let pokemonName = document.getElementById('pokemonName')
+                let pokemonImgShiny = document.getElementById('pokemonImgShiny');
+                let pokemonNameShiny = document.getElementById('pokemonNameShiny')
+
+                let response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+
+                if (!response.ok)
+                {
+                    throw new Error("There is no pokemon like that.");
+                }
+
+                let data = await response.json();
+
+                console.log(data.id);
+                pokemonName.textContent = "Its is: " + data.forms[0].name;
+                pokemonImg.src = data.sprites.front_default;
+                pokemonNameShiny.textContent = "With its shiny form:";
+                pokemonImgShiny.src = data.sprites.front_shiny;
+                
+            }
+            catch (error)
+            {
+                let errorMessage = document.getElementById('errorMessage')
+                errorMessage.textContent = "There is no pokemon like that";
+                console.error('There is an error: ', error);
+            }
+        }
+    </script>
+</body>
+</html>
