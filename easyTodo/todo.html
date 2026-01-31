@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO App</title>
+</head>
+<body>
+    <h1>TODO</h1>
+    <h3>Add a todo!</h3>
+    <input type="text" name="text" id="text" placeholder="Type TODO in"> <input type="button" value="add" onclick="addTodo()">
+    <p id="error"></p>
+    <ul id="myUl">
+
+    </ul>
+    <script>
+        function addTodo()
+        {
+            var text = document.getElementById('text');
+            var ul = document.getElementById('myUl');
+            var li = document.createElement('li');
+            var error = document.getElementById('error');
+            if(text.value != "")
+            {
+                error.textContent = "";
+                li.textContent = text.value;
+
+                ul.appendChild(li);
+                text.value = "";
+            }
+            else
+            {
+                error.textContent = "Type something in beforehand.";
+            }
+        }
+    </script>
+</body>
+</html>
