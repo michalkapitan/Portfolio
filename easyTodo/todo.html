@@ -8,7 +8,7 @@
 <body>
     <h1>TODO</h1>
     <h3>Add a todo!</h3>
-    <input type="text" name="text" id="text" placeholder="Type TODO in"> <input type="button" value="add" onclick="addTodo()">
+    <input type="text" name="text" id="text" placeholder="Type TODO in"> <input type="button" value="add" onclick="addTodo()"> <input type="button" value="remove all todos" onclick="removeTodos()">
     <p id="error"></p>
     <ul id="myUl">
 
@@ -26,13 +26,49 @@
                 li.textContent = text.value;
 
                 ul.appendChild(li);
+                
+                saveTodo();
+
                 text.value = "";
+                
             }
             else
             {
                 error.textContent = "Type something in beforehand.";
             }
         }
+
+        function saveTodo()
+        {
+            var allLi = document.querySelectorAll('#myUl li');
+
+                var tableLi = [];
+                allLi.forEach(function(element) {
+                    tableLi.push(element.textContent)
+                })
+
+                localStorage.setItem('myTodos', JSON.stringify(tableLi));
+        }
+
+        function loadTodo()
+        {
+            var ul = document.getElementById('myUl');
+
+            var savedTodo = JSON.parse(localStorage.getItem('myTodos')) || [];
+
+            savedTodo.forEach(function(textTodo) {
+                var li = document.createElement('li');
+                li.textContent = textTodo;
+                
+                ul.appendChild(li);
+            });
+        }
+        function removeTodos()
+        {
+            localStorage.clear();
+            window.location.reload();
+        }
+        loadTodo();
     </script>
 </body>
 </html>
