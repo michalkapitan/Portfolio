@@ -19,4 +19,6 @@ jobs:
         run: npm install -g html-validator-cli
 
       - name: Validate certain project
-        run: html-validator --format=pretty --file="easyTodo/*.html"
+        working-directory: ./easyTodo
+        run: html-validator --format=pretty --file=todo.html
+        
