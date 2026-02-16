@@ -1,4 +1,4 @@
-name: Validation of html
+name: Walidacja Projektu Portfolio
 
 on: [push, pull_request]
 
@@ -7,18 +7,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Pobierz kod z repozytorium
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Przygotuj Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install validator
-        run: npm install -g html-validator-cli
+      - name: Zainstaluj HTMLHint
+        run: npm install -g htmlhint
 
-      - name: Validate certain project
-        working-directory: ./easyTodo
-        run: html-validator --format=pretty --file=todo.html
-        
+      - name: Sprawdź pliki HTML w folderze easyTodo
+        run: htmlhint "easyTodo/**/*.html"
